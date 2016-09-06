@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="MyFirstApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Child controllers</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script>
+		angular.module("MyFirstApp", [])
+			.run(function($rootScope){
+				$rootScope.nombre = "Tutorial";
+			})	
+			.controller("FirstController", function ($scope) {
+				$scope.nombre = "Wilson";
+				setTimeout(function(){
+					$scope.$apply(function(){
+						$scope.nombre= " :3";
+					});
+				},1000);
+			})
+			.controller("ChildController", function ($scope){});
+	</script>
+</head>
+<body ng-controller="FirstController">
+	{{nombre}}
+	<p><strong>Valor del padre:</strong> {{$parent.nombre}}</p>
+	<div ng-controller="ChildController">
+		<p><strong>Valor del hijo:</strong>{{nombre}}</p>
+		<input type="text" ng-model="$parent.nombre">
+	</div>
+</body>
+</html>
