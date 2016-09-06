@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="MyFirstApp">
+<head>
+	<title>hide: show</title>
+	<style>
+		.animated{
+			opacity: 1;
+			max-height: auto;
+			overflow: hidden;
+			transition: all 1s;
+		}
+
+		.animated.ng-hide{
+			opacity: 0;
+			max-height: 0px !important;
+			overflow: hidden;
+			display: block !important;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="controller.js"></script>
+</head>
+<body ng-controller="FirstController">
+	<div ng-show="loading">Cargando...</div>
+	<div ng-show="!loading && posts.length <= 0">No se escontraron resultados</div>
+	<ul ng-show="posts.length > 0" class="animated">
+		<li ng-repeat="post in posts">
+			<h2>{{post.title}}</h2>
+			<p>
+				{{post.body}}
+			</p>
+		</li>
+	</ul>
+</body>
+</html>
