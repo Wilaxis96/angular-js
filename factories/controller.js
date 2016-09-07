@@ -7,7 +7,7 @@ angular.module("ToDoList", ["LocalStorageModule"])
 			ToDoService.activities = localStorageService.get(ToDoService.key);
 		}
 		else{
-			ToDoService.activities = [];
+			//ToDoService.activities = [];
 		}
 
 		ToDoService.add = function(newActv){
