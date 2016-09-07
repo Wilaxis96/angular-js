@@ -28,13 +28,17 @@ angular.module("ToDoList", ["LocalStorageModule"])
 			return ToDoService.activities;
 		}
 		ToDoService.removeItem = function(item){
-			ToDoService.activities = ToDoService.activities.filter(function(activty){
-				return activty !== item;
-			});
-			ToDoService.updaLocalStorage();
-			return ToDoService.getAll();
-		}
-		return ToDoService;
+   		// Filter Array
+   			ToDoService.activities.map( function( object , index ,arr ){
+      		if ( object === item ) {
+     		ToDoService.activities.splice(index, 1);
+     		}
+   		});
+
+   		ToDoService.updaLocalStorage();
+   			return ToDoService.getAll();
+  		}
+		return ToDoService;	
 	})
 	.controller("ToDoController", function ($scope,ToDoService) {
 
